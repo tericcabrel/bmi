@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title>Body Mass Index Calculator</title>
+</head>
+<body class="bg-gray-300 w-full h-screen">
+    <div class="container px-5 py-24 mx-auto flex flex-col">
+        <div class="lg:w-1/3 md:w-1/2 w-full mx-auto my-10 md:mt-0 bg-green-200 border-green-600 by text-green-600 border-l-4 p-4" role="alert">
+            <p class="font-bold">
+                Success
+            </p>
+            <p>
+                Congratulations, you are the best player.
+            </p>
+        </div>
+        <ul class="error-list">
+            <li th:each="e : ${#fields.detailedErrors()}" th:class="'error-item ' + ${e.global ? 'globalerr' : 'fielderr'}">
+                <span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span>:
+                <span th:text="#{|${e.message}|}">The error message</span>
+            </li>
+        </ul>
+        <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+            <h2 class="text-gray-900 text-lg mb-4 font-medium title-font">Body Mass Index Calculator</h2>
+            <p class="leading-relaxed mb-5 text-gray-600">Enter your weight and your height to get your value</p>
+
+            <div class="relative mb-4">
+                <label for="weight" class="leading-7 font-bold text-sm text-gray-600">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" value="50" step="5" min="2" max="800" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <span class="text-xs text-red-600">The value must be between 2 and 800.</span>
+            </div>
+            <div class="relative mt-4 mb-10">
+                <label for="height" class="leading-7 font-bold text-sm text-gray-600">Height (cm):</label>
+                <input type="number" id="height" name="height" value="170" step="10" min="40" max="250" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <span class="text-xs text-red-600">The value must be between 40 and 250.</span>
+            </div>
+
+            <button class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-md">Calculate</button>
+        </div>
+    </div>
+</body>
+</html>
