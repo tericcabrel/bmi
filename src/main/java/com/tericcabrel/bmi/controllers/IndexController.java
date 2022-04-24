@@ -19,7 +19,7 @@ public class IndexController {
     public String indexPage(Model model) {
         UserInfoDto userInfoDto = new UserInfoDto();
 
-        userInfoDto.setHeight(30d).setWeight(1d);
+        userInfoDto.setHeight(40d).setWeight(2d);
 
         model.addAttribute("userInfo", userInfoDto);
 
@@ -29,22 +29,25 @@ public class IndexController {
     @PostMapping("/")
     public String calculateBMI(
             @ModelAttribute("userInfo") @Valid UserInfoDto userInfoDto,
-            BindingResult result,
+            BindingResult inputValidationResult,
             Model model
     ) {
-        System.out.println(userInfoDto);
-        System.out.println(result.hasErrors());
-
-        if (result.hasErrors()) {
+        if (inputValidationResult.hasErrors()) {
             return "index";
         }
 
-        ResultDto resultDto = new ResultDto(0);
+        double bmi = calculateBodyMassIndex(userInfoDto.getComputedHeight(), userInfoDto.getWeight());
+        ResultDto resultDto = new ResultDto(bmi);
 
-        System.out.println(resultDto);
-
-        model.addAttribute("", resultDto);
+        model.addAttribute("result", resultDto);
 
         return "index";
+    }
+
+    private double calculateBodyMassIndex(double height, double weight) {
+        double bmi = weight / Math.pow(height, 2);
+        double bmiRounded = Math.round(bmi * 10);
+
+        return  bmiRounded / 10;
     }
 }

@@ -14,6 +14,10 @@ public class UserInfoDto {
     double weight;
 
     @Min(value = 40, message = "The code must be equal or greater than 40")
-    @Max(value = 250, message = "The code must be equal or lower than 250")
+    @Max(value = 300, message = "The code must be equal or lower than 300")
     double height;
+
+    public double getComputedHeight() {
+        return this.height / 100;
+    };
 }
