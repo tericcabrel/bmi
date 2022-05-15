@@ -51,5 +51,20 @@ Run the generated .jar file in the target folder
 java -jar target/bmi-1.0.jar
 ```
 
+## Docker
+Build the Docker image
+```shell
+docker build -t tericcabrel/bmi:v1 .
+```
 
+Run the Docker image
+```shell
+docker run -it --rm -p 8000:8000 --name bmiapp tericcabrel/bmi:v1
+```
 
+Push the image to Docker
+```shell
+docker login --username=tericcabrel
+docker tag tericcabrel/bmi:v1 tericcabrel/bmi:v1
+docker push tericcabrel/bmi:v1
+```
