@@ -13,10 +13,16 @@ if [ "$(docker ps -qa -f name=$CONTAINER_NAME)" ]; then
     fi
 fi
 
-docker run -d --rm -p 8000:8000 --name bmiapp tericcabrel/bmi:latest
+docker run -d --rm -p 8000:8000 --name $CONTAINER_NAME tericcabrel/bmi:latest
 
 exit
 ENDSSH
+
+if [ $? -eq 0 ]; then
+  exit 0
+else
+  exit 1
+fi
 
 end=$(date +"%s")
 
