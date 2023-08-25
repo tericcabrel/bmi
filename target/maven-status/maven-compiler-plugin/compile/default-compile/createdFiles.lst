@@ -1,0 +1,6 @@
+com\tericcabrel\bmi\dtos\ResultDto.class
+com\tericcabrel\bmi\dtos\UserInfoDto.class
+com\tericcabrel\bmi\configs\WebConfig.class
+com\tericcabrel\bmi\BmiApplication.class
+com\tericcabrel\bmi\controllers\IndexController.class
+com\tericcabrel\bmi\utils\Constants.class
